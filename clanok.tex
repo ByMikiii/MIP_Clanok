@@ -1,33 +1,30 @@
 % Metódy inžinierskej práce
 
-\documentclass[10pt,twoside,slovak,a4paper,twocolumn]{article}
+\documentclass[10pt,twoside,slovak,a4paper]{article}
 
 \usepackage[slovak]{babel}
 %\usepackage[T1]{fontenc}
-\usepackage[IL2]{fontenc} % lepšia sadzba písmena Ľ než v T1
+\usepackage[IL2]{fontenc} 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\usepackage{float}
-\usepackage{amsmath}
-\usepackage{wrapfig}
-\restylefloat{figure}
-\usepackage{url} % príkaz \url na formátovanie URL
-\usepackage{hyperref} % odkazy v texte budú aktívne (pri niektorých triedach dokumentov spôsobuje posun textu)
+\usepackage{url} 
+
+%\usepackage{hyperref} 
 
 \usepackage{cite}
 %\usepackage{times}
 
 \pagestyle{headings}
 
-\title{Názov\thanks{Semestrálny projekt v predmete Metódy inžinierskej práce, ak. rok 2015/16, vedenie: Meno Priezvisko}} % meno a priezvisko vyučujúceho na cvičeniach
+\title{Indexovanie veľkých dát v internete vecí: metódy a využitie\thanks{Semestrálny projekt v predmete Metódy inžinierskej práce, ak. rok 2023/24, vedenie: Pavol Baťalík}}
 
-\author{Meno Priezvisko\\[2pt]
+\author{Miloš Bardáč\\[2pt]
 	{\small Slovenská technická univerzita v Bratislave}\\
 	{\small Fakulta informatiky a informačných technológií}\\
-	{\small \texttt{...@stuba.sk}}
+	{\small \texttt{xbardac@stuba.sk}}
 	}
 
-\date{\small 30. september 2015} % upravte
+\date{\small 30. september 2023}
 
 
 
@@ -36,123 +33,97 @@
 \maketitle
 
 \begin{abstract}
-\ldots
-\end{abstract}
 
+V súčasnej dobe nepretržitého rastu objemu dát v oblasti internetu vecí je efektívne indexovanie neoddeliteľnou súčasťou. Z toho dôvodu sa tento článok zaoberá problematikou indexovania veľkých dát v IoT a rôznými technikami, ktoré sa využívajú v IoT prostredí. Okrem toho sa článok venuje aj požiadavkám a výzvam spojenými s indexovaním objemných dát v IoT. Medzi tieto výzvy patrí napríklad bezpezpečnosť a ochrana súkromia, cena, či postupom času veľký nárast objemu dát. Tento článok poskytuje pohľad na dôležitosť efektívneho indexovania v kontexte Internetu vecí a taktiež pomáha čitateľom lepšie pochopiť technikám indexovania a výzvam v tomto odvetví. Taktiež vysvetľuje prečo je rýchly a spoľahlivý prístup k dátam kľúčovým aspektom využitia IoT dát pre rôzne aplikácie a inovácie.
+
+\end{abstract}
 
 
 \section{Úvod}
 
+Vstupujeme do doby, kedy sa svet okolo nás stáva čoraz viac prepojeným a inteligentným. Internet vecí, skrátene IoT, môžeme chápať ako súbor sietí, v ktorých sú fyzicky prepojené dáta alebo zariadenia, čo umožňuje týmto zariadeniam zhromažďovať a zdielať dáta. \cite{7916854} Práve táto technológia zohráva kľúčovú úlohu v tomto pomerne rýchlom pokroku. V poslednom čase môžme byť svedkami pomerne masivného nárastu objemu dát v oblasti internetu vecí. S týmto nárastom je spojená potreba tieto dáta efektívne usporiadávať a prehľadávať. 
 
-Motivujte čitateľa vysvetlite, o čom píšete. Úvod sa väčšinou nedelí na časti.
-\begin{wrapfigure}{1}{0.3\textwidth}
-\begin{center}
-\includegraphics[width=0.25\textwidth]{fiit_logo.png}
-\caption{\label{fig:img1}FIIT Logo}
-\end{center}
-\end{wrapfigure}
-
-
-Uveďte explicitne štruktúru článku. Tu je nejaký príklad.
-Základný problém, ktorý bol naznačený v úvode, je podrobnejšie vysvetlený v časti~\ref{nejaka}.
-Dôležité súvislosti sú uvedené v častiach~\ref{dolezita} a~\ref{dolezitejsia}.
-Záverečné poznámky prináša časť~\ref{zaver}.Uveďte explicitne štruktúru článku. Tu je nejaký príklad.
-Základný problém, ktorý bol naznačený v úvode, je podrobnejšie vysvetlený v časti~\ref{nejaka}.
-Dôležité súvislosti sú uvedené v častiach~\ref{dolezita} a~\ref{dolezitejsia}.
-Záverečné poznámky prináša časť~\ref{zaver}.Uveďte explicitne štruktúru článku. Tu je nejaký príklad.
-Základný problém, ktorý bol naznačený v úvode, je podrobnejšie vysvetlený v časti~\ref{nejaka}.
-Dôležité súvislosti sú uvedené v častiach~\ref{dolezita} a~\ref{dolezitejsia}.
-Záverečné poznámky prináša časť~\ref{zaver}.
+Preto sa v následujúcich kapitolách bude článok venovať rôznym aspektom tohto nevyhnutného procesu. Hneď v následujúcej kapitole (časť ~\ref{poziadavky}) bude čitateľ oboznámený s požiadavkami spojenými s touto problematikou. Následujúca kapitola (časť ~\ref{oblasti}) je spojená so samotnými oblasťami využitia. V ďalšej časti (časť ~\ref{techniky}) sa článok zameriava na rôzne techniky indexovania objemných dát v oblasti Internetu vecí. Tie majú možnosť dosť výrazne zlepšiť rôzne odvetvia, či už je to priemysel, energetika či dokonca aj zdravotná starostlivosť. Jedná z posledných kapitol (časť ~\ref{vyzvy}) je venovaná problémom a výzvam, ktoré sa spájajú s touto tématikou. Patrí sem otázka bezpečnosti dát, ochrany súkromia používateľov, či správa zariadení. V predposlednej časti (časť ~\ref{zaver}) ukončíme tento článok záverom a zhrnutím. Zároveň v tejto časti si čitateľ pripomenie kľúčové body, ktorým sa článok venuje a taktiež sa dozvie o víziách tejto problematiky do budúcnosti. Na úplnom konci, posledná kapitola (časť ~\ref{temy}) bude obsahovať reakciu na témy z prednášok.
 
 
 
-\section{Nejaká časť} \label{nejaka}
 
-Z obr.~\ref{f:rozhod} je všetko jasné. 
+\section{Požiadavky} \label{poziadavky}
+Veľké dáta sú obrovské množstva štruktúrovaných alebo neštrukturovaných údajov, ktoré musia byť spracované. Internet vecí reprezentuje sieť zariadení, ktoré sú pripojené k internetu a komunikujú medzi sebou. S príchodom Internetu vecí sa objem generovaných údajov výrazne zvýšil, čo znamená, že je potrebné zvýšiť efektivitu skladovania a správy týchto údajov. Požiadavky sú špecifikácie, ktoré určujú akým spôsobom by mal byť proces indexovania vykonaný a zároveň aby bol úspešný a čo najefektívnejší. Požiadavky taktiež stanovujú ako má byť daný systém indexovania navrhnutý a implementovaný aby najlepšie splňoval potreby daného IoT prostredia. Nedávne štúdie sa stále viac zameriavajú na optimalizáciu výkonnosti v rozsiahlych dátových sadách s čo najväčšou efektívnosťou.\cite{2021} Preto sa táto kapitola pokúsi čitaťelovi priblížiť základne požiadavky , ktoré treba zvážiť pri indexovaní dát v kontexte internetu vecí. Medzi tieto požiadavky patrí škálovateľnosť, efektivita, dynamickosť, či nezávislosť na dátach.\cite{8807848} Každá z týchto kľúčových vlastností je samostatne vysvetlená v podkapitolach nižšie.
 
+
+
+\paragraph{}
 \begin{figure*}[tbh]
-\centering
-\includegraphics[scale=0.5,angle=10]{diagram_1.pdf}
-\includegraphics[scale=0.3]{diagram_2.pdf}
-\includegraphics[scale=0.3]{diagram_3.pdf}
-
-\begin{equation*}
-\begin{bmatrix}
-1 & 2 & 3 & 4 & 5\\
-6 & 7 & 8 & 9 & 0\\
-1 & 2 & 3 & 4 & 5\\
-1 & 2 & 3 & 4 & 5\\
-1 & 2 & 3 & 4 & 5
-\end{bmatrix}
-\end{equation*}
-
-\begin{multline*}
-p(x) = 3x^6 + 14x^5y + 590x^4y^2 + 19x^3y^3\\ 
-- 12x^2y^4 - 12xy^5 + 2y^6 - a^3b^3
-\end{multline*}
-
-Aj text môže byť prezentovaný ako obrázok. Stane sa z neho označný plávajúci objekt. Po vytvorení diagramu zrušte znak \texttt{\%} pred príkazom \verb|\includegraphics| označte tento riadok ako komentár (tiež pomocou znaku \texttt{\%}).
-\caption{Rozhodujúci argument.}
-\label{f:rozhod}
+    \centering
+    \includegraphics[width=0.6\textwidth]{poziadavky.pdf}
+\caption{Požiadavky pri indexovani veľkých dát \cite{8807848}}
+\label{f:poziadavky}
 \end{figure*}
 
+\subsection{Škálovateľnosť}
+Výraz škálovateľnosť, rozšíriteľnosť, nám hovorí o schopnosti indexovacieho systému prispôsobiť sa postupne rýchlejšie narastajúcemu objemu dát. V bežnom svete to známená, že daný systém musí byť schopný spracovávať stále väčšie množstva nových dát bez výraznejšieho poklesu rýchlosti.\cite{8807848} Na to je potrebný optimalizovaný algoritmus a dátové štruktúry, aby bol tento systém schopný udržať výkon aj pri väčšom zvýšení záťaže. Obzvlášť v oblasti IoT kde sa prevažne pracuje s obrovským množstvom dát je táto vlastnosť nevyhnutná.
 
-\section{Iná časť} \label{ina}
+\subsection{Efektivita}
+Efektivita (efektívnosť) spočíva v schopnosti systému poskytovať najrýchlejšiu možnú odozvu na dotazy vyhľadávania. \cite{Khettabi2022ClusteringAP} V jednoduchosti musí systém od odoslania požiadavky užívateľom v čo najkratšom čase doručiť relevantný výsledok. Ďalej efektivita zahŕňa aj výber vhodných algoritmov, pretože výpočet podobnosti objektov môže byť značne náročnejší.
 
-Základným problémom je teda\ldots{} Najprv sa pozrieme na nejaké vysvetlenie (časť~\ref{ina:nejake}), a potom na ešte nejaké (časť~\ref{ina:nejake}).\footnote{Niekedy môžete potrebovať aj poznámku pod čiarou.}
+\subsection{Dynamickosť}
+Dynamickosť (dynamika) znamená schopnosť za čo najmenší čas reagovať na zmeny dátach a databáze bez nutnosti reorganizácie, ktorá by zabrala príliš veľa času. To nám umožňuje mať nepretržitú indexáciu a stále aktuálne údaje.\cite{8807848} V dnešnom svete Internetu vecí je tato špecifikácia z dôvodu nutnosti zmien a pridávania nových zariadení taktiež nevyhnutná.
 
-Môže sa zdať, že problém vlastne nejestvuje\cite{Coplien:MPD}, ale bolo dokázané, že to tak nie je~\cite{Czarnecki:Staged, Czarnecki:Progress}.Napriek tomu, aj dnes na webe narazíme na všelijaké pochybné názory\cite{PLP-Framework}. Dôležité veci možno \emph{zdôrazniť kurzívou}.
-
-
-\subsection{Nejaké vysvetlenie} \label{ina:nejake}
-
-Niekedy treba uviesť zoznam:
-
-\begin{itemize}
-\item jedna vec
-\item druhá vec
-	\begin{itemize}
-	\item x
-	\item y
-	\end{itemize}
-\end{itemize}
-
-Ten istý zoznam, len číslovaný:
-
-\begin{enumerate}
-\item jedna vec
-\item druhá vec
-	\begin{enumerate}
-	\item x
-	\item y
-	\end{enumerate}
-\end{enumerate}
+\subsection{Nezávislosť na dátach}
+Táto vlastnosť umožňuje indexovaciumu systému účinnosť aj v prípade, že sa na vstupe objavia rôzne typy dát ako aj ich rozloženie. Najmä v oblasti IoT kde sú mnoho krát rôzne formáty, štruktúry a značkovanie dát, musí byť schopný tieto údaje efektívne spracovať, bez ohľadu na ich charakteristiky.\cite{2021} To robí nezávislosť na dátach neoddeliteľnú súčasť Internetu vecí.
 
 
-\subsection{Ešte nejaké vysvetlenie} \label{ina:este}
+\section{Oblasti využitia} \label{oblasti}
+Spektrum využitia Internetu veci je veľmi široké. Dôvody používania sú rôzne, či už je to kvôli zvýšeniu efektivity, zníženiu nákladov alebo celkovému zlepšeniu kvality produktov, či služieb. Aplikácia indexovania big IoT dát je široká a zohráva kľúčovú úlohu v mnohých odvetviach. 
 
-\paragraph{Veľmi dôležitá poznámka.}
-Niekedy je potrebné nadpisom označiť odsek. Text pokračuje hneď za nadpisom.
+
+\subsection{Využitie v zdravotníctve}
+Aplikácia veľkých dát spojených s IoT v oblasti zdravotnej starostlivosti je novým a pomerne rýchlo sa rozvíjajúcim oblastným výskumom. Využitie zariadení a senzorov internetu vecí umožňuje zdravotnému personálu jednoducho zbierať a analyzovať veľké množstvo dát v reálnom čase, čo prispeje k lepším výsledkom pacientov, lepšej prevencií, zníženiu nákladov, či celkovému zlepšeniu kvality zdravotnej starostlivosti.\cite{2021}
+Stále využívanie internetu vecí a veľkých dát v oblasti zdravotníctva má vysoký potenciál prispieť k udržateľnejšiemu rozvoju. Technológia IoT má významné uplatnenie najčastejšie v oblastiach zdravotnej starostlivosti, ako je monitorovanie UV žiarenia, zubná starostlivosť, či detekcia pádov.\cite{Singh2020EmergenceOI}
+Napriek tomu v spojitosti s touto témou vzniká mnoho problémov a výziev, ktorým treba čeliť. Či už sú to problémy s ochranou osobných údajov, bezpečnosti a mnoho ďalších, ktoré budú všetky spomenuté v jednej z posledných kapitol (časť .~\ref{vyzvy}).
 
 
 
-\section{Dôležitá časť} \label{dolezita}
+\subsection{Využitie v priemysle}
+Veľké množstvo údajov má v priemyselnom odvetví mimoriadny význam, pretože slúži na zlepšenie a potenciálne urýchlenie výrobných procesov. Tieto rozsiahle zdroje údajov, často označované ako "priemyselné údaje IoT" (internet vecí), pochádzajú z rôznych snímačov, meracích prístrojov a automatizovaných systémov vo výrobných zariadeniach. Zahŕňajú informácie týkajúce sa veličín, ako sú teplota, tlak, vlhkosť, stav strojov, spotreba energie a množstvo ďalších parametrov. \cite{Zhou2021VariationalLE}
+
+
+\subsection{Využitie vo výskume}
+Výskumníci už aj v dnešnej dobe skúmaju potencionálne využívanie a dôsledky technológie internetu vecí pomocou veľkých objemov dát. Predpokladá sa \cite{Riggins2015ResearchDO}
+
+
+\section{Techniky indexovania veľkých dát v IoT} \label{techniky}
+Techniky použité pri indexovaní údajov musia byť čo najefektívnejšie, čo vôbec neuľahčuje príchod nových a objemnejších typov dát. Z dôvodu veľkého počtu techník indexovania objemných dát v internete vecí sú v tejto kapitole spomenuté iba tie najviac rozšírené.
+
+\paragraph{}
+\begin{figure*}[tbh]
+    \centering
+    \includegraphics[width=1\textwidth]{techniky.pdf}
+\caption{Globálna taxonómia techník indexovania \cite{2021}}
+\label{f:techniky}
+\end{figure*}
+
+\subsection{Techniky založené na stromoch (Tree-Based)}
+ Technika Tree-Based sa používa na indexovanie viacrozmerných údajov na základe rozdielenia priestoru na podpriestory alebo bunky.\cite{2021}
+
+
+\subsubsection{R*Q-tree}
+\subsubsection{BB-tree}
+\subsubsection{Kd-tree}
+\subsubsection{Quad-tree}
+\subsubsection{Pyramid-tree}
+
+\section{Výzvy} \label{vyzvy}
 
 
 
 
-\section{Ešte dôležitejšia časť} \label{dolezitejsia}
+\section{Záver a zhrnutie} \label{zaver}
 
+\section{Reakcia na témy z prednášok} \label{temy}
 
-
-\section{Záver} \label{zaver} % prípadne iný variant názvu
-
-
-
-%\acknowledgement{Ak niekomu chcete poďakovať\ldots}
-
-
-% týmto sa generuje zoznam literatúry z obsahu súboru literatura.bib podľa toho, na čo sa v článku odkazujete
+\newpage
 \bibliography{literatura}
-\bibliographystyle{plain} % prípadne alpha, abbrv alebo hociktorý iný
+\bibliographystyle{unsrt}
 \end{document}
